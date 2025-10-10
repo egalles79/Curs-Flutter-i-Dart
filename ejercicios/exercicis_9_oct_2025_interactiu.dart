@@ -8,14 +8,10 @@ import 'dart:io';
 // -----------------------------
 // Helpers d'impressió i entrada
 // -----------------------------
-void printHeader(String title) {
-  stdout.writeln("\n================= $title =================");
-}
+void printHeader(String title) => stdout.writeln("\n================= $title =================");
 
-void printItem(int n, Object? value) {
-  stdout.writeln("$n) $value");
-}
-
+void printItem(int n, Object? value) => stdout.writeln("$n) $value");
+  
 String _prompt(String msg) {
   stdout.write(msg);
   final s = stdin.readLineSync();
@@ -57,28 +53,16 @@ String _readNonEmpty(String msg) {
 // ======================================================
 
 // 1) saludar(): imprimeix (la deixem com a efecte per enunciat)
-void f1_saludar() {
-  stdout.writeln("Hola, bienvenido a Dart");
-}
-
+void f1_saludar() => stdout.writeln("Hola, bienvenido a Dart");
+  
 // 2) suma de dos enters
-int f2_sumar(int a, int b) {
-  return a + b;
-}
-
+int f2_sumar(int a, int b) => a + b;
+  
 // 3) par o impar -> String
-String f3_parOImpar(int n) {
-  if (n % 2 == 0) {
-    return "par";
-  } else {
-    return "impar";
-  }
-}
+String f3_parOImpar(int n) => (n % 2 == 0) ? "par" : "impar";
 
 // 4) àrea rectangle (double)
-double f4_areaRect(double base, double altura) {
-  return base * altura;
-}
+double f4_areaRect(double base, double altura) => base * altura;
 
 // 5) mitjana d'una llista de notes
 double f5_media(List<double> notes) {
@@ -136,16 +120,8 @@ double f9_f_to_c(double f) {
 }
 
 // 10) primer divisible pel segon?
-String f10_esDivisible(int a, int b) {
-  if (b == 0) {
-    return "no es pot dividir per zero";
-  }
-  if (a % b == 0) {
-    return "sí, és divisible";
-  } else {
-    return "no és divisible";
-  }
-}
+String f10_esDivisible(int a, int b)  => (b == 0) ? "no es pot dividir per zero" : 
+  (a % b == 0) ? "sí, és divisible" : "no és divisible";
 
 // ======================================================
 // BLOC 4 — Retos combinats
