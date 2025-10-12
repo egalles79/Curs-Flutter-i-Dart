@@ -331,16 +331,16 @@ void b4_5_indexFora(List<int> xs, int i) {
 // 6) Simular llegir arxiu
 void b4_6_llegirArxiu() {
   try {
-    throw Exception("Archivo no encontrado");
+    throw Exception("Arxiu no trobat");
   } catch (e) {
-    stdout.writeln("Error al abrir: $e");
+    stdout.writeln("Error al obrir: $e");
   }
 }
 
 // 7) Arrel quadrada amb error si negatiu
 double? b4_7_arrelPositiva(num n) {
   try {
-    if (n < 0) throw Exception("Número negativo");
+    if (n < 0) throw Exception("Número negatiu");
     return math.sqrt(n.toDouble());
   } catch (e) {
     stdout.writeln("Error: $e");
@@ -352,7 +352,7 @@ double? b4_7_arrelPositiva(num n) {
 Future<void> b4_8_futureFalla() async {
   try {
     await Future.delayed(const Duration(milliseconds: 300));
-    throw Exception("Error simulado");
+    throw Exception("Error simulat");
   } catch (e) {
     stdout.writeln("Capturat async: $e");
   }
