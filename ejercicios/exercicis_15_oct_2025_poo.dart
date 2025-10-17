@@ -1,5 +1,5 @@
 // ======================================================
-// Ejercicios 15-Oct-2025 — POO en Dart (versió que segueix l’enunciat)
+// Ejercicios 15-Oct-2025 — POO en Dart
 // Nota important:
 // - L’enunciat té DOS blocs separats. Els dos demanen una classe "Animal".
 //   En UN SOL fitxer Dart no podem definir dues vegades "Animal".
