@@ -31,19 +31,24 @@ class ApiClient {
   }) : _client = client ?? http.Client();
 
   /// Combina les capçaleres específiques amb les globals (p.ex. x-api-key)
+  /// Combina les capçaleres específiques amb les globals (p.ex. x-api-key)
   Map<String, String> _mergeHeaders(Map<String, String>? headers) {
     final merged = <String, String>{
       if (headers != null) ...headers,
-      if (apiKey != null) 'x-api-key': apiKey!,
+      'x-api-key': apiKey?.isNotEmpty == true ? apiKey! : 'reqres-free-v1',
     };
     return merged;
   }
 
   /// Fa una petició GET i retorna el cos JSON decodificat.
+  /// Fa una petició GET i retorna el cos JSON decodificat.
   Future<dynamic> getJson(Uri uri, {Map<String, String>? headers}) async {
-    final res = await _client
-        .get(uri, headers: _mergeHeaders(headers))
-        .timeout(timeout);
+    final merged = _mergeHeaders({
+      'Accept':
+          'application/json', // ⬅️ Afegit: evita 401 en alguns proxys/paths
+      if (headers != null) ...headers,
+    });
+    final res = await _client.get(uri, headers: merged).timeout(timeout);
     return _handleJsonResponse(res);
   }
 

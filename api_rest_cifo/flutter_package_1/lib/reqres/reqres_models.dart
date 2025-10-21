@@ -17,12 +17,12 @@ class ReqResUser {
   });
 
   factory ReqResUser.fromJson(Map<String, dynamic> json) => ReqResUser(
-    id: json['id'] as int,
-    email: json['email'] as String,
-    firstName: json['first_name'] as String,
-    lastName: json['last_name'] as String,
-    avatar: json['avatar'] as String,
-  );
+        id: json['id'] as int,
+        email: json['email'] as String,
+        firstName: json['first_name'] as String,
+        lastName: json['last_name'] as String,
+        avatar: json['avatar'] as String,
+      );
 }
 
 class ReqResSupport {
@@ -53,15 +53,15 @@ class ReqResUserList {
   });
 
   factory ReqResUserList.fromJson(Map<String, dynamic> json) => ReqResUserList(
-    page: json['page'] as int,
-    perPage: json['per_page'] as int,
-    total: json['total'] as int,
-    totalPages: json['total_pages'] as int,
-    data: (json['data'] as List<dynamic>)
-        .map((e) => ReqResUser.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    support: ReqResSupport.fromJson(json['support']),
-  );
+        page: json['page'] as int,
+        perPage: json['per_page'] as int,
+        total: json['total'] as int,
+        totalPages: json['total_pages'] as int,
+        data: (json['data'] as List<dynamic>)
+            .map((e) => ReqResUser.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        support: ReqResSupport.fromJson(json['support']),
+      );
 }
 
 class CreatedOrUpdatedUser {

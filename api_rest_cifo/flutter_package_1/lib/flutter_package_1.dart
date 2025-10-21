@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:flutter_package_1/api_client.dart';
 import 'package:flutter_package_1/reqres/reqres_api.dart';
 import 'package:flutter_package_1/countries/countries_api.dart';
@@ -12,7 +13,8 @@ Future<void> demo() async {
   print('Hi ha ${users.data.length} usuaris a la pàgina ${users.page}');
   // Obtenir un usuari concret
   final u2 = await reqres.getUser(2);
-  print('Usuari 2: ${u2.firstName} ${u2.lastName}');
+  print('Usuari 2: ${u2?.firstName ?? '(desconegut)'} ${u2?.lastName ?? ''}'
+      .trim());
   // Crear usuari
   final created = await reqres.createUser(name: 'Eloi', job: 'Professor');
   print('Creat id=${created.id} a ${created.updatedAtOrCreatedAt}');
