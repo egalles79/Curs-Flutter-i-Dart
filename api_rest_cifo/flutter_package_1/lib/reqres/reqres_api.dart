@@ -3,7 +3,6 @@
 // Classe principal que encapsula totes les crides HTTP a la API pública de ReqRes.
 // Gestiona usuaris (/users) i recursos (/unknown) amb maneig d'errors i models tipats.
 
-import 'package:flutter_package_1/reqres/create_user_models.dart';
 import 'package:flutter_package_1/reqres/resources_models.dart';
 import '../config/constants.dart';
 import '../core/pagination.dart';
@@ -25,18 +24,18 @@ class ReqResApi {
   // ---------------------------------------------------------------------------
 
   /// Crea un usuari a ReqRes (POST /users).
-  /// Retorna el model amb id i createdAt si tot va bé.
-  Future<ReqResCreatedUser> createUser({
+  /// Retorna el model d'eco amb `id` i `createdAt` si tot va bé.
+  Future<CreatedOrUpdatedUser> createUser({
     required String name,
     required String job,
   }) async {
-    // Endpoint de creació
     final uri = _base.replace(path: '${_base.path}${ReqresPaths.users}');
     final body = {'name': name, 'job': job};
 
-    // 🟢 Cridem a postJson amb paràmetre anomenat 'body'
-    final json = await _client.postJson(uri, body: body);
-    return ReqResCreatedUser.fromJson(json as Map<String, dynamic>);
+    // Enviem JSON i parsegem la resposta a CreatedOrUpdatedUser (tal com espera el test)
+    final json =
+        await _client.postJson(uri, body: body) as Map<String, dynamic>;
+    return CreatedOrUpdatedUser.fromJson(json);
   }
 
   /// Obté un únic usuari pel seu [id].
@@ -53,17 +52,15 @@ class ReqResApi {
   }
 
   /// Obté la llista d'usuaris (GET /users?page=x).
-  Future<Paginated<ReqResUser>> listUsers({int page = 1}) async {
+  /// El test **espera** que això retorni un `ReqResUserList`.
+  Future<ReqResUserList> listUsers({int page = 1}) async {
     final uri = _base.replace(
       path: '${_base.path}${ReqresPaths.users}',
       queryParameters: {'page': '$page'},
     );
 
     final json = await _client.getJson(uri) as Map<String, dynamic>;
-    return Paginated<ReqResUser>.fromJson(
-      json,
-      (m) => ReqResUser.fromJson(m),
-    );
+    return ReqResUserList.fromJson(json);
   }
 
   // ---------------------------------------------------------------------------

@@ -4,6 +4,14 @@ import 'package:flutter_package_1/api_client.dart';
 import 'package:flutter_package_1/reqres/reqres_api.dart';
 import 'package:flutter_package_1/reqres/reqres_models.dart';
 
+import '../../flutter_package_1/lib/exercises/ex1_print_raw_json.dart';
+import '../../flutter_package_1/lib/exercises/ex2_country_name.dart';
+import '../../flutter_package_1/lib/exercises/ex3_models_with_lists.dart';
+import '../../flutter_package_1/lib/exercises/ex4_fetch_with_errors.dart';
+import '../../flutter_package_1/lib/exercises/ex5_deep_nested_names.dart';
+import '../../flutter_package_1/lib/exercises/ex6_tojson.dart';
+import '../../flutter_package_1/lib/exercises/ex7_multi_search.dart';
+
 Future<void> main() async {
   final api = ReqResApi(ApiClient());
 
@@ -17,7 +25,15 @@ Future<void> main() async {
   } on ApiException catch (e) {
     print('⚠️ listResources va fallar: ${e.statusCode} ${e.body}');
   }
-
+  print('== Inici exercicis 23 octubre ==');
+  await ex1PrintRawJson();
+  await ex2CountryName();
+  await ex3ModelsWithLists();
+  await ex4FetchWithErrors();
+  await ex5DeepNestedNames();
+  await ex6ToJson();
+  await ex7MultiSearch();
+  print('== Fi exercicis ==');
   try {
     // Obtenim usuaris de la pàgina 2
     final users = await api.listUsers(page: 2);

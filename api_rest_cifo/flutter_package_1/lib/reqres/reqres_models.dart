@@ -60,7 +60,9 @@ class ReqResUserList {
         data: (json['data'] as List<dynamic>)
             .map((e) => ReqResUser.fromJson(e as Map<String, dynamic>))
             .toList(),
-        support: ReqResSupport.fromJson(json['support']),
+        // Retoc: tipem fort el 'support' per evitar warnings i errors de cast
+        support:
+            ReqResSupport.fromJson(json['support'] as Map<String, dynamic>),
       );
 }
 
