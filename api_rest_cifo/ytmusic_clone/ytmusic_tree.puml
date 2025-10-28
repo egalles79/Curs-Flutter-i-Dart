@@ -1,0 +1,44 @@
+@startmindmap
+* MaterialApp
+** AppScaffold (Stateful)
+*** AppBar
+**** IconButton: search
+**** IconButton: cast
+*** Body : IndexedStack
+**** HomePage
+***** CustomScrollView
+****** SliverToBoxAdapter : CategoryChips
+****** SliverToBoxAdapter : HorizontalCarousel (Playlists)
+****** SliverToBoxAdapter : HorizontalCarousel (Àlbums)
+****** SliverGrid : AlbumGrid
+****** SliverToBoxAdapter : SizedBox(altura per miniplayer)
+**** ExplorePage
+***** ListView
+****** SectionHeader("Gèneres")
+****** Wrap(ChoiceChips)
+****** SectionHeader("Tendències")
+****** PlaceholderCards
+**** LibraryPage
+***** DefaultTabController
+****** Column
+******* TabBar (Llistes, Àlbums, Cançons, Artistes)
+******* Expanded : TabBarView
+******** PlaceholderList (per cada tab)
+******** SizedBox(espai per miniplayer)
+*** BottomNavigationBar (NavigationBar M3)
+**** Inici / Explorar / Biblioteca
+*** MiniPlayer (persist)
+**** LinearProgressIndicator (progrés fi)
+**** Row
+***** Image.cover
+***** Text(títol • artista)
+***** IconButton(play/pause)
+***** IconButton(next)
+** NowPlayingPage (fullscreen)
+*** Column
+**** Artwork gran (AspectRatio 1:1)
+**** TrackInfo (títol, artista)
+**** Slider (seek) + temps
+**** Row controls (shuffle, prev, play/pause, next, repeat)
+@endmindmap
+
